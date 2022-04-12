@@ -20,6 +20,7 @@ def get_mnist_dataloader():
         download=True,
         transform=transform
     )
+    train_data = torch.utils.data.Subset(train_data, list(range(0, 25000)))
     dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     return dataloader
 

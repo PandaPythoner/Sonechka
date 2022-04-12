@@ -121,7 +121,7 @@ for epoch in range(epochs):
     # make the images as grid
     generated_img = make_grid(generated_img)
     # save the generated torch tensor models to disk
-    save_generator_image(generated_img, f"../imgs/gen_img{epoch}.png")
+    save_generator_image(generated_img, f"./imgs/MNIST_generated/gen_img{epoch}.png")
     images.append(generated_img)
     epoch_loss_generator = loss_generator / bi # total generator loss for the epoch
     epoch_loss_discriminator = loss_discriminator / bi # total discriminator loss for the epoch
