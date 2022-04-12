@@ -1,0 +1,9 @@
+imgw = 28
+imgh = 28
+imgsz = imgw * imgh
+generator_input_sz = 128
+sample_size = 64
+input_images_path = '../imgs/MNIST/'
+batch_size = 512
+epochs = 100
+discriminator_train_steps = 1
