@@ -21,10 +21,10 @@ from tqdm import tqdm
 
 matplotlib.style.use('ggplot')
 
+is_cuda_available = False
+device = torch.device('cpu')
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-
+print(device)
 generator = Generator(generator_input_sz).to(device)
 discriminator = Discriminator().to(device)
 print('##### GENERATOR #####')
@@ -119,7 +119,7 @@ for epoch in range(epochs):
     # create the final fake image for the epoch
     generated_img = generator(noise).cpu().detach()
     # make the images as grid
-    generated_img = make_grid(generated_img)
+    generated_img = make_grid(generated_img[:4])
     # save the generated torch tensor models to disk
     save_generator_image(generated_img, f"./imgs/MNIST_generated/gen_img{epoch}.png")
     images.append(generated_img)

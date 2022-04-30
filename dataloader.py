@@ -24,4 +24,22 @@ def get_mnist_dataloader():
     dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     return dataloader
 
-get_dataloader = get_mnist_dataloader
+
+def get_ffhq_dataloader():
+    transform = transforms.Compose([
+        lambda x: x.resize((imgw, imgh)),
+        transforms.ToTensor(),
+        transforms.Normalize(
+               mean=[0.5, 0.5, 0.5],
+               std=[0.5, 0.5, 0.5]
+        )                            
+    ])
+    train_data = datasets.ImageFolder(
+        root=input_images_path,
+        transform=transform
+    )
+    train_data = torch.utils.data.Subset(train_data, list(range(0, 128)))
+    dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    return dataloader    
+
+get_dataloader = get_ffhq_dataloader

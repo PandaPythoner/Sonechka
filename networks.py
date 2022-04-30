@@ -50,11 +50,11 @@ class Generator(nn.Module):
             nn.LeakyReLU(0.2),
             nn.Linear(512, 1024),
             nn.LeakyReLU(0.2),
-            nn.Linear(1024, 784),
+            nn.Linear(1024, imgw * imgh * 3),
             nn.Tanh(),
         )
     def forward(self, x):
-        return self.main(x).view(-1, 1, imgw, imgh)
+        return self.main(x).view(-1, 3, imgw, imgh)
     
 def create_noise(sample_size, generator_input_sz, device):
     return torch.randn(sample_size, generator_input_sz).to(device)

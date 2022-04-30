@@ -1,9 +1,9 @@
-imgw = 28
-imgh = 28
-imgsz = imgw * imgh
+imgw = 70
+imgh = 70
+imgsz = imgw * imgh * 3
 generator_input_sz = 128
 sample_size = 64
-input_images_path = './imgs/MNIST/'
-batch_size = 512
+input_images_path = './imgs/FFHQ/'
+batch_size = 128
 epochs = 200
 discriminator_train_steps = 1
