@@ -1,9 +1,10 @@
-imgw = 70
-imgh = 70
+imgw = 120
+imgh = 120
 imgsz = imgw * imgh * 3
-generator_input_sz = 128
+generator_input_sz = 1024
 sample_size = 64
 input_images_path = './imgs/FFHQ/'
+snapshots_path = "./imgs/FFHQ_generated/"
 batch_size = 128
 epochs = 200
 discriminator_train_steps = 1

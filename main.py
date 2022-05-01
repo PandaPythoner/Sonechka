@@ -100,6 +100,14 @@ generator.train()
 discriminator.train()
 
 
+def make_snapshot(snapshot_id):
+    global generator
+    generated_img = generator(noise).cpu().detach()
+    # make the images as grid
+    generated_img = make_grid(generated_img[:25])
+    # save the generated torch tensor models to disk
+    save_generator_image(generated_img, snapshots_path + f"snapshot{snapshot_id}.png")    
+
 for epoch in range(epochs):
     loss_generator = 0.0
     loss_discriminator = 0.0
@@ -116,13 +124,10 @@ for epoch in range(epochs):
         data_fake = generator(create_noise(b_size, generator_input_sz))
         # train the generator network
         loss_generator += train_generator(optim_generator, data_fake)
+        if bi % 3 == 0:
+            make_snapshot(str(epoch) + "_" + str(bi))
     # create the final fake image for the epoch
-    generated_img = generator(noise).cpu().detach()
-    # make the images as grid
-    generated_img = make_grid(generated_img[:4])
-    # save the generated torch tensor models to disk
-    save_generator_image(generated_img, f"./imgs/MNIST_generated/gen_img{epoch}.png")
-    images.append(generated_img)
+    
     epoch_loss_generator = loss_generator / bi # total generator loss for the epoch
     epoch_loss_discriminator = loss_discriminator / bi # total discriminator loss for the epoch
     losses_g.append(epoch_loss_generator)

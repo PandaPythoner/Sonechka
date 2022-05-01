@@ -38,7 +38,7 @@ def get_ffhq_dataloader():
         root=input_images_path,
         transform=transform
     )
-    train_data = torch.utils.data.Subset(train_data, list(range(0, 128)))
+    train_data = torch.utils.data.Subset(train_data, list(range(0, 20000)))
     dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     return dataloader    
 
